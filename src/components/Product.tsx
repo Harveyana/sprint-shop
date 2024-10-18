@@ -25,27 +25,27 @@ const Product = (product:Product,key:string|number) => {
    
         <div
           key={key}
-          className={` text-secondary w-[45%] md:w-[40%] lg:w-[21%] h-[350px] min-w-[230px] relative cursor-pointer bg-white`}
+          className={` text-secondary w-[48%] h-[350px] lg:min-w-[230px] max-w-[180px] lg:max-w-[250px] relative cursor-pointer bg-white`}
         >
-          <div onClick={() => handleNavigateToProduct(product.id)} className="w-full rounded-2xl  h-[80%] bg-[#F8FAFC] flex justify-center items-center">
+          <div onClick={() => handleNavigateToProduct(product.id)} className="w-full rounded-2xl h-[70%]  lg:h-[80%] bg-[#F8FAFC] flex justify-center items-center">
             <img className="h-full max-h-[8rem] bg-[#F8FAFC]" src={product.image} />
           </div>
           
           <div onClick={() => handleNavigateToProduct(product.id)} className="flex justify-between items-start w-full my-3 flex-col px-2">
             <span className="w-full flex justify-between  items-start">
-              <h1 className="w-[70%] max-h-[20%] text-[16px] font-semibold truncate text-ellipsis overflow-hidden">
+              <h1 className="w-[70%] max-h-[20%] text-[12px] lg:text-[16px] font-semibold truncate text-ellipsis overflow-hidden">
                 {product.title}
               </h1>
-              <h2 className="font-semibold text-[14px]">₦ {product.price}</h2>
+              <h2 className="font-semibold text-[12px] whitespace-nowrap  lg:text-[14px]">₦ {product.price}</h2>
             </span>
-            <p className="text-[#666666] text-[14px]">{product.category}</p>
+            <p className="text-[#666666] text-[12px] lg:text-[14px]">{product.category}</p>
 
             <div className="flex gap-x-1 my-2">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M8.99008 2.67502C9.36342 1.77752 10.6368 1.77752 11.0101 2.67502L12.7451 6.84752L17.2484 7.20835C18.2184 7.28585 18.6118 8.49585 17.8726 9.12918L14.4418 12.0683L15.4893 16.4625C15.7151 17.4092 14.6859 18.1567 13.8559 17.65L10.0001 15.295L6.14425 17.65C5.31425 18.1567 4.28508 17.4083 4.51092 16.4625L5.55842 12.0683L2.12758 9.12918C1.38842 8.49585 1.78175 7.28585 2.75175 7.20835L7.25508 6.84752L8.99008 2.67502Z" fill="#FBBF24"/>
               </svg>
-              <p className="text-[#666666] text-[14px]">{product.rating.rate}</p>
-              <p className="text-[#666666] text-[14px]">({product.rating.count})</p>
+              <p className="text-[#666666] text-[12px] lg:text-[14px]">{product.rating.rate}</p>
+              <p className="text-[#666666] text-[12px] lg:text-[14px]">({product.rating.count})</p>
             </div>
           </div>
           <button className="w-[25px] absolute top-3 right-6 rounded-full">

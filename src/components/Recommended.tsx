@@ -21,23 +21,10 @@ const Recommended = () => {
 
   const {products} = useProducts()
 
-  console.log(products)
-
-  const navigate = useNavigate();
-
-  const handleNavigateToProduct = (productId:string) => {
-    navigate(`/products/${productId}`);
-  };
-
-  // const truncateTitle = (title, maxLength) => {
-  //   return title.length > maxLength
-  //     ? title.substring(0, maxLength) + "..."
-  //     : title;
-  // };
 
   return (
     <div className=" w-full h-fit overflow-x-auto overflow-y-hidden">
-      <div className="w-full h-fit flex justify-center lg:items-start items-center md:justify-center my-3  gap-5">
+      <div className="w-fit h-fit flex justify-center gap-8">
         {products.map((product:Product) => (
         <Product 
           key={product.id}

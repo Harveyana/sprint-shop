@@ -92,7 +92,7 @@ const SideBar = () => {
               </div> */}
 
               <div className="me-auto space-y-1 tracking-wider">
-                <h1 className="text-lg">Prices</h1>
+                {/* <h1 className="text-lg">Prices</h1> */}
                 {/* <div className="flex gap-y-4 flex-col w-full justify-end items-start font-semibold text-md">
                   <div className="flex justify-center items-center gap-x-3">
                     <input
@@ -123,10 +123,10 @@ const SideBar = () => {
             </div>
 
             <div className="flex flex-col items-start gap-y-5 tracking-wider">
-              <button className="py-4 text-left border-[#999999] border-b-[1px] text-[#E6B41D] text-lg w-full">
+              <button className="py-4 text-left text-[#E6B41D] text-lg w-full">
                 OUR CATEGORIES
               </button>
-              <div className="flex flex-col items-start gap-y-5 tracking-wider text-secondary text-lg mb-10">
+              <div className="flex flex-col items-start gap-y-5 tracking-wider text-secondary text-[14px] mb-10">
                 <NavLink to="/categories/all">
                   <span onClick={handleToggleMenu}>All</span>
                 </NavLink>

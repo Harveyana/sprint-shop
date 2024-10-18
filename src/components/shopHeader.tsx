@@ -1,44 +1,17 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-// import logo from "@/img/logo.png";
-import searchIcon from "../assets/img/search.svg";
 import cart from "../assets/img/cart.svg";
-
-// import { useMenu } from "@/contexts/MenuContext";
+import SearchProducts from "./SearchProducts";
 
 const ShopHeader = () => {
   // const { handleToggleMenu, handleToggleSearch } = useMenu();
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const navigate = useNavigate();
-
-  // const handleSearch = (event) => {
-  //   event.preventDefault();
-  //   navigate(`/search-result/${searchQuery}`);
-  //   // handleToggleSearch();
-  //   // setSearchQuery("");
-  // };
 
   return (
     <div className="w-full z-20 sticky top-0 left-0 mx-auto bg-white flex justify-between items-center lg:gap-x-5">
     
-      <div className="flex justify-center gap-x-6 items-center w-full p-3 py-6 ">
-        <form onSubmit={()=>{}} className="w-[30%] relative text-black">
-          <input
-            required
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            type="text"
-            className="pl-10 pr-4 py-3 bg-[#F8FAFC] rounded-xl outline-none w-full bg-transparent placeholder:text-white"
-            placeholder="Search"
-          />
-          <svg xmlns="http://www.w3.org/2000/svg" className="absolute left-3 top-1/2 transform -translate-y-1/2" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="currentColor" d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39M11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7"/></svg>
-         
-        </form>
+      <div className="w-full flex justify-center gap-x-6 items-center w-full lg:p-3 py-6 ">
+        <SearchProducts/>
         <nav className="flex justify-center items-center gap-x-4 tracking-wider text-[#27141A] text-[20px]">
-          {/* <NavLink to="/track-order">Track Order</NavLink> */}
-          {/* <NavLink to="/faq">FAQs</NavLink> */}
-          {/* <NavLink to="/login">Login</NavLink> */}
           <NavLink
             to="/cart"
             className="flex gap-x-1 items-center justify-center"

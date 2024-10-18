@@ -21,23 +21,10 @@ const Products = () => {
 
   const {products} = useProducts()
 
-  console.log(products)
-
-  const navigate = useNavigate();
-
-  const handleNavigateToProduct = (productId:string) => {
-    navigate(`/products/${productId}`);
-  };
-
-  // const truncateTitle = (title, maxLength) => {
-  //   return title.length > maxLength
-  //     ? title.substring(0, maxLength) + "..."
-  //     : title;
-  // };
 
   return (
-    <div className="h-[70vh] w-full overflow-y-auto overflow-x-hidden">
-      <div className="w-full flex justify-center lg:items-start items-center flex-wrap md:justify-center my-3 gap-10">
+    <div className="h-[70vh] w-full overflow-y-auto overflow-x-hidden ">
+      <div className="w-full flex justify-center lg:items-start flex-wrap lg:justify-start my-3 gap-x-1 gap-y-2 lg:gap-10">
         {products.map((product:Product) => (
         <Product 
           key={product.id}
