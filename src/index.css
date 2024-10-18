@@ -1,0 +1,70 @@
+@import url("https://fonts.cdnfonts.com/css/catellos-demo");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+body {
+  background-color: rgba(245, 245, 245, 1);
+}
+.gray-white {
+  background-color: rgba(245, 245, 245, 1);
+}
+.gray-white-text {
+  color: rgba(102, 102, 102, 1);
+}
+.grey-black {
+  background-color: rgba(25, 25, 25, 1);
+}
+
+h1 {
+  font-family: "Catellos DEMO", sans-serif;
+}
+
+img {
+  max-width: 100%;
+}
+
+.loader {
+  width: 45px;
+  aspect-ratio: 0.75;
+  --c: no-repeat linear-gradient(#e6b41d 0 0);
+  background: var(--c) 0% 50%, var(--c) 50% 50%, var(--c) 100% 50%;
+  background-size: 20% 50%;
+  animation: loading 1s infinite linear;
+}
+
+input[type="radio"] {
+  display: inline-block;
+  position: relative;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: white;
+  border: 2px solid #666;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.bg-color-white {
+  background-color: #e6e3e3 !important;
+}
+
+@keyframes loading {
+  20% {
+    background-position: 0% 0%, 50% 50%, 100% 50%;
+  }
+  40% {
+    background-position: 0% 100%, 50% 0%, 100% 50%;
+  }
+  60% {
+    background-position: 0% 50%, 50% 100%, 100% 0%;
+  }
+  80% {
+    background-position: 0% 50%, 50% 50%, 100% 100%;
+  }
+}
+
