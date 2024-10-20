@@ -23,22 +23,29 @@ const Recommended = () => {
 
 
   return (
-    <div className=" w-full h-fit overflow-x-auto overflow-y-hidden">
-      <div className="w-fit h-fit flex justify-center gap-8">
-        {products.map((product:Product) => (
-        <Product 
-          key={product.id}
-          id={product.id}
-          title={product.title}
-          price={product.price}
-          category={product.category}
-          description={product.description}
-          rating={product.rating}
-          image={product.image}
-        />
-        ))}
+    <div className="flex flex-col items-start">
+      <h1 className="text-2xl text-left font-bold mb-4">Recommended</h1>
+      
+      <div className=" w-full h-fit overflow-x-auto overflow-y-hidden">
+
+        <div className="w-fit h-fit flex justify-center gap-4 lg:gap-8">
+          {products.map((product:Product) => (
+            <Product 
+              key={product.id + product.title}
+              id={product.id}
+              title={product.title}
+              price={product.price}
+              category={product.category}
+              description={product.description}
+              rating={product.rating}
+              image={product.image}
+            />
+          ))}
+        </div>
+
       </div>
     </div>
+    
   ); 
 };
 

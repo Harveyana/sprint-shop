@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import useLocalStorage from "../hooks/useLocalstorage"
+// import useLocalStorage from "../hooks/useLocalstorage"
+import usePersistState from "../hooks/usePersistState";
 
 interface CartItem {
   id: number;
@@ -25,22 +26,25 @@ interface CartContextData {
 const CartContext = createContext<CartContextData | null>(null);
 
 function CartProvider({ children }: { children: React.ReactNode }) {
-  const [cart, setCart] = useLocalStorage<CartItem[]>("cart", []);
+  const [cart, setCart] = usePersistState('cart',[]);
 
-  useEffect(() => {
-    const savedCart = JSON.parse(localStorage.getItem("cart"));
-    if (savedCart && JSON.stringify(savedCart) !== JSON.stringify(cart)) {
-      setCart(savedCart);
+
+  const handleAddToCart = (product: CartItem) => {
+    const productIndex = cart.findIndex((item:CartItem) => item.id === product.id);
+  
+    if (productIndex === -1) {
+      // If product does not exist in the cart, add it with initial quantity
+      setCart([...cart, product]);
+    } else {
+      // If product exists in the cart, increase its quantity
+       cart[productIndex].quantity += 1;
+      setCart(cart);
     }
-  }, [cart, setCart]);
-
-  const handleAddToCart = (currentProduct: CartItem) => {
-    setCart((prevCart:any[]) => [...prevCart, currentProduct]);
-    console.log("cart");
   };
 
+
   const handleDeleteFromCart = (productId: number) => {
-    setCart((prevCart:any[]) => prevCart.filter((item) => item.id !== productId));
+    setCart(cart.filter((item:CartItem) => item.id !== productId));
   };
 
   const isInCart = (productId: number) => {
@@ -48,27 +52,26 @@ function CartProvider({ children }: { children: React.ReactNode }) {
   };
 
   const increaseQuantity = (productId: number) => {
-    setCart((prevCart:any[]) =>
-      prevCart.map((item) => {
+
+    const updated = cart.map((item:CartItem) => {
         if (item.id === productId) {
           return { ...item, quantity: item.quantity + 1 };
         }
-        return item;
-      })
-    );
+        return item
+    })
+    setCart(updated)
   };
 
-  const decreaseQuantity   
- = (productId: number) => {
-    setCart((prevCart:any[]) =>
-      prevCart.map((item) => {
+  const decreaseQuantity = (productId: number) => {
+    const updated = cart.map((item:CartItem) => {
         if (item.id === productId && item.quantity > 1) {
           return { ...item, quantity: item.quantity - 1 };
         }
         return item;
-      })
-    );
+    })
+    setCart(updated)
   };
+
 
   const handleClearCart = () => {
     setCart([]);
@@ -76,7 +79,7 @@ function CartProvider({ children }: { children: React.ReactNode }) {
 
   const cartItemCount = cart.length;
 
-  const totalPriceCost = cart.reduce((acc:number, item:any) => {
+  const totalPriceCost = cart.reduce((acc:number, item:CartItem) => {
     return acc + item.quantity * item.price;
   }, 0);
 

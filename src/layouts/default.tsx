@@ -13,7 +13,7 @@ function DefaultLayout() {
           <aside className='hidden lg:flex w-[20%] h-full'>
             <SideBar />
           </aside>  
-          <main className='w-full  lg:w-[78%] h-full overflow-auto pb-4'>
+          <main className='w-full lg:w-[78%] h-full overflow-auto pb-4'>
            <ShopHeader/>
             <Outlet />
           </main>

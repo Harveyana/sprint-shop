@@ -1,6 +1,8 @@
 import React from "react";
 
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../contexts/CartContext";
+import useToast from "../hooks/useToast"
 
 interface Product  {
   id: number;
@@ -16,16 +18,30 @@ interface Product  {
 const Product = (product:Product,key:string|number) => {
 
   const navigate = useNavigate();
+  const {handleAddToCart} = useCart()
+  const {notify} = useToast()
+
+  const onAddTocart=()=>{
+    handleAddToCart({
+      id:product?.id,
+      name:product?.title,
+      image: product?.image,
+      quantity: 1,
+      price: product?.price,
+      category: product?.category
+    })
+    notify('Added to cart successfully')
+  }
 
   const handleNavigateToProduct = (productId:string) => {
-    navigate(`/products/${productId}`);
+    navigate(`/product/${productId}`);
   };
 
   return (
    
         <div
           key={key}
-          className={` text-secondary w-[48%] h-[350px] lg:min-w-[230px] max-w-[180px] lg:max-w-[250px] relative cursor-pointer bg-white`}
+          className={` text-secondary w-[48%] h-[350px] lg:h-[370px] lg:min-w-[230px] max-w-[180px] lg:max-w-[250px] relative cursor-pointer bg-white`}
         >
           <div onClick={() => handleNavigateToProduct(product.id)} className="w-full rounded-2xl h-[70%]  lg:h-[80%] bg-[#F8FAFC] flex justify-center items-center">
             <img className="h-full max-h-[8rem] bg-[#F8FAFC]" src={product.image} />
@@ -40,15 +56,15 @@ const Product = (product:Product,key:string|number) => {
             </span>
             <p className="text-[#666666] text-[12px] lg:text-[14px]">{product.category}</p>
 
-            <div className="flex gap-x-1 my-2">
+            {product && product.rating && <div className="flex gap-x-1 ">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.99008 2.67502C9.36342 1.77752 10.6368 1.77752 11.0101 2.67502L12.7451 6.84752L17.2484 7.20835C18.2184 7.28585 18.6118 8.49585 17.8726 9.12918L14.4418 12.0683L15.4893 16.4625C15.7151 17.4092 14.6859 18.1567 13.8559 17.65L10.0001 15.295L6.14425 17.65C5.31425 18.1567 4.28508 17.4083 4.51092 16.4625L5.55842 12.0683L2.12758 9.12918C1.38842 8.49585 1.78175 7.28585 2.75175 7.20835L7.25508 6.84752L8.99008 2.67502Z" fill="#FBBF24"/>
+                <path fillRule="evenodd" clipRule="evenodd" d="M8.99008 2.67502C9.36342 1.77752 10.6368 1.77752 11.0101 2.67502L12.7451 6.84752L17.2484 7.20835C18.2184 7.28585 18.6118 8.49585 17.8726 9.12918L14.4418 12.0683L15.4893 16.4625C15.7151 17.4092 14.6859 18.1567 13.8559 17.65L10.0001 15.295L6.14425 17.65C5.31425 18.1567 4.28508 17.4083 4.51092 16.4625L5.55842 12.0683L2.12758 9.12918C1.38842 8.49585 1.78175 7.28585 2.75175 7.20835L7.25508 6.84752L8.99008 2.67502Z" fill="#FBBF24"/>
               </svg>
               <p className="text-[#666666] text-[12px] lg:text-[14px]">{product.rating.rate}</p>
               <p className="text-[#666666] text-[12px] lg:text-[14px]">({product.rating.count})</p>
-            </div>
+            </div>}
           </div>
-          <button className="w-[25px] absolute top-3 right-6 rounded-full">
+          <button onClick={()=>onAddTocart()} className="w-[25px] absolute top-3 right-6 rounded-full">
             <svg width="40" height="40" className="hover:bg-black p-0.5 rounded-full" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect width="36" height="36" rx="18" fill="white"/>
               <g clip-path="url(#clip0_2002_2306)">
