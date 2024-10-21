@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useProducts } from "../contexts/ProductsContext";
-import { useNavigate } from "react-router-dom";
 import SearchProduct from "./SearchProduct";
 import { debounce } from 'lodash';
-import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
+import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react'
 
 interface modalProps {
   open:boolean;
@@ -43,9 +42,6 @@ const SearchModal = ({open,setOpen}:modalProps) => {
   
 
   return (
-
-
-   
 
     <Dialog open={open} onClose={setOpen} className="relative z-10">
       <DialogBackdrop
@@ -95,7 +91,7 @@ const SearchModal = ({open,setOpen}:modalProps) => {
               </div>: 
               
               <div className="flex items-center justify-center my-6">
-                <h1 className="font-semibold text-[12px] whitespace-nowrap text-[20px]">No Product Found</h1>
+                <svg xmlns="http://www.w3.org/2000/svg" width="7em" height="7em" viewBox="0 0 16 16"><path fill="gray" fill-rule="evenodd" d="M1.75 1a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5zM1 4.75A.75.75 0 0 1 1.75 4H7a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 4.75m9 7.75a2.5 2.5 0 1 0 0-5a2.5 2.5 0 0 0 0 5m0 1.5c.834 0 1.607-.255 2.248-.691l1.472 1.471a.75.75 0 1 0 1.06-1.06l-1.471-1.472A4 4 0 1 0 10 14M1.75 7a.75.75 0 0 0 0 1.5H4A.75.75 0 0 0 4 7z" clip-rule="evenodd"/></svg>
               </div>
               
               }

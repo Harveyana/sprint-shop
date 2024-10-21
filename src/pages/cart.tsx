@@ -1,9 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useProducts } from "../contexts/ProductsContext";
 import { useCart } from "../contexts/CartContext";
-import Spinner from "../components/Spinner";
-import Recommended from "../components/Recommended";
+
 import CartItem from "../components/cartItem";
 
 interface CartItem {
@@ -16,23 +12,8 @@ interface CartItem {
 }
 
 const Cart = () => {
-  // const [product, setProduct] = useState<Product>();
-  const [quantity, setQuantity] = useState(1)
-  const [loading, setLoading ] = useState(false)
-  const { fetchProductById} = useProducts()
-  const {handleAddToCart,cart,totalPriceCost,handleDeleteFromCart} = useCart()
+  const {cart,totalPriceCost} = useCart()
 
-  console.log(cart)
-
-  
-
-  if(loading){
-    return(
-      <div>
-        <Spinner/>
-      </div>
-    )
-  }
 
   if(!cart.length){
     return(

@@ -1,14 +1,8 @@
-import React, { useState } from "react";
 
-import { useProducts } from "../contexts/ProductsContext";
-import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import Categories from "./categories";
 
 const SideBar = () => {
-  const { category } = useParams();
-
-  const {fetchCategories,categories,isLoading} = useProducts();
 
   return (
  
@@ -17,28 +11,14 @@ const SideBar = () => {
 
           <div className="pt-10 px-6 space-y-4">
 
-            {/* {productsStore.isInProductPage && ( */}
             <div className="flex flex-col gap-y-4">
 
               <NavLink to="/">
-                <h1 className="text-4xl font-bold mb-4 text-[#27141A]">Sprint Shop</h1>
+                <h1 className="text-4xl font-bold mb-4 text-[#27141A]">Sprint Sh<span className="text-[#E6B41D]">o</span>p</h1>
               </NavLink>
 
             </div>
-
-            <div className="flex flex-col items-start gap-y-5 tracking-wider">
-              <button className="py-4 text-left text-[#E6B41D] text-lg w-full">
-                OUR CATEGORIES
-              </button>
-              {categories.length ? <div className="flex flex-col items-start gap-y-5 tracking-wider text-secondary text-[14px] mb-10">
-                
-                {categories.map((category:string)=>
-                  <NavLink key={category} to={`/category/${category}`}>
-                    <span className="capitalize">{category}</span>
-                  </NavLink>)
-                }
-              </div>:<></>}
-            </div>
+            <Categories/>
           </div>
         </div>
       </div>

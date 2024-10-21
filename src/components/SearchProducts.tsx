@@ -1,13 +1,10 @@
-import React, { useState } from "react";
-import { useProducts } from "../contexts/ProductsContext";
+import { useState } from "react";
 import SearchModal from "./SearchModal";
 
 
 const SearchProducts = () => {
 
-  const {products} = useProducts()
-
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery] = useState("");
   const [open, setOpen] = useState(false)
 
   return (

@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import usePersistState from "../hooks/usePersistState";
 
 interface Product {
@@ -31,7 +30,7 @@ interface ProductsContextData {
  
 }
 
-const ProductsContext = createContext<ProductsContextData | null>(null);
+const ProductsContext = createContext<ProductsContextData | any >(null);
 
 function ProductsProvider({ children }:{ children: React.ReactNode }) {
   const [products, setProducts] = useState<Product[]>([]);

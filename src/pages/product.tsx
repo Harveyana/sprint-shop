@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useProducts } from "../contexts/ProductsContext";
 import { useCart } from "../contexts/CartContext";
@@ -23,7 +23,7 @@ const Product = () => {
   const [quantity, setQuantity] = useState(1)
   const [loading, setLoading ] = useState(false)
   const { fetchProductById} = useProducts()
-  const {handleAddToCart,handleDeleteFromCart} = useCart()
+  const {handleAddToCart} = useCart()
   const { id } = useParams();
 
   const {notify} = useToast()

@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext} from "react";
 // import useLocalStorage from "../hooks/useLocalstorage"
 import usePersistState from "../hooks/usePersistState";
 
@@ -23,7 +23,7 @@ interface CartContextData {
   totalPriceCost: number;
 }
 
-const CartContext = createContext<CartContextData | null>(null);
+const CartContext = createContext<CartContextData | any>(null);
 
 function CartProvider({ children }: { children: React.ReactNode }) {
   const [cart, setCart] = usePersistState('cart',[]);

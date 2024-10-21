@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import {useState} from "react";
 import { useCart } from "../contexts/CartContext";
 
 import useToast from "../hooks/useToast"
@@ -14,7 +14,7 @@ interface Product  {
 const CartItem = (product:Product) => {
 
   const [quantity, setQuantity] = useState(product.quantity)
-  const {handleAddToCart,cart,totalPriceCost,handleDeleteFromCart,increaseQuantity,decreaseQuantity} = useCart()
+  const {handleDeleteFromCart,increaseQuantity,decreaseQuantity} = useCart()
 
 
 

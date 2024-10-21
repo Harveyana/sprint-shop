@@ -1,16 +1,19 @@
 
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import SearchProducts from "./SearchProducts";
 import { useCart } from "../contexts/CartContext";
+import MainHeader from "./mainHeader";
 
 const ShopHeader = () => {
 
   const{cartItemCount} = useCart()
 
   return (
-    <div className="w-full z-20 sticky top-0 right-0 mx-auto flex justify-between items-center lg:gap-x-5">
-    
-      <div className="w-full flex justify-center gap-x-6 items-center w-full lg:p-3 py-6 ">
+    <div className="w-full z-20 sticky bg-white lg:bg-none top-0 right-0 mx-auto flex flex-col justify-between items-center gap-y-2 lg:gap-x-5">
+
+     <MainHeader/>
+
+      <div className="w-full flex justify-center gap-x-6 items-center w-full lg:p-3 pb-6 ">
         <SearchProducts/>
         <nav className="flex justify-center items-center gap-x-4 tracking-wider text-[#27141A] text-[20px]">
           <NavLink
