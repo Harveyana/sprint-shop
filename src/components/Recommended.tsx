@@ -4,7 +4,7 @@ import Product from "./Product";
 
 import { useProducts } from "../contexts/ProductsContext";
 
-interface Product  {
+interface product  {
   id: number;
   title:string;
   price: number;
@@ -19,7 +19,7 @@ const Recommended = () => {
 
   const {getRecommendations,query} = useProducts()
 
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<product[]>([]);
 
   useEffect(() => {
     const getProducts = async()=>{
