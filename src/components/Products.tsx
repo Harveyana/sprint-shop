@@ -1,12 +1,9 @@
-import React from "react";
 
 import Product from "./Product";
 
 import { useProducts } from "../contexts/ProductsContext";
 
-import { useNavigate } from "react-router-dom";
-
-interface Product  {
+interface product  {
   id: number;
   title:string;
   price: number;
@@ -33,7 +30,7 @@ const Products = () => {
   return (
     <div className="h-[70vh] w-full overflow-y-auto overflow-x-hidden ">
       <div className="w-full flex justify-center lg:items-start flex-wrap lg:justify-start my-3 gap-x-1 gap-y-2 lg:gap-10">
-        {products.map((product:Product) => (
+        {products.map((product:product) => (
         <Product 
           key={product.id + product.title}
           id={product.id}

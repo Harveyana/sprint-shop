@@ -1,5 +1,5 @@
 import Products from "../components/Products";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import Recommended from "../components/Recommended";
 import { useProducts } from "../contexts/ProductsContext";
 import { useParams } from "react-router-dom";
@@ -11,7 +11,7 @@ const Category = () => {
   
   const { category } = useParams();
 
-  const {fetchProductsByCategory,filterByCategory,isLoading} = useProducts()
+  const {fetchProductsByCategory,isLoading} = useProducts()
 
   useEffect(() => {
     const getProducts = async()=>{

@@ -1,14 +1,12 @@
 
-import React, { useState, useCallback } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { TypeOptions } from 'react-toastify';
 
 
 export default function useToast() {
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState('');
 
-  const notify = (message:string,type?:string) => {
+  const notify = (message:string,type?:(TypeOptions|undefined)) => {
     toast(message, {
       position: "top-right",
       autoClose: 5000,
