@@ -33,7 +33,7 @@ const Product = (product:Product,key:string|number) => {
     notify('Added to cart successfully')
   }
 
-  const handleNavigateToProduct = (productId:string) => {
+  const handleNavigateToProduct = (productId:number) => {
     navigate(`/product/${productId}`);
   };
 

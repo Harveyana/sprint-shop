@@ -24,40 +24,7 @@ const Cart = () => {
 
   console.log(cart)
 
-  // const handleDecrement = () => {
-  //   if (quantity > 1) {
-  //     setQuantity((prev)=> prev - 1);
-  //   }
-  // };
-
-  // const handleIncrement = () => {
-  //   setQuantity((prev) => prev + 1);
-  // };
-
-  // const onAddTocart=()=>{
-  //   handleAddToCart({
-  //     id:product?.id,
-  //     name:product?.title,
-  //     image:product?.image,
-  //     quantity:quantity,
-  //     price:product?.price,
-  //     category:product?.category
-  //    }
-  //   )
-  // }
- 
-
-  // useEffect(() => {
-  //   const getProduct = async()=>{
-  //     setLoading(true)
-  //     const data = await fetchProductById(id)
-  //     console.log(data)
-  //     setProduct(data)
-  //     setLoading(false)
-  //   }
-
-  //   getProduct()
-  // }, []);
+  
 
   if(loading){
     return(

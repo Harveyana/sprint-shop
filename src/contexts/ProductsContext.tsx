@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import usePersistState from "../hooks/usePersistState";
 
 interface Product {
   id: number;
@@ -16,12 +17,13 @@ interface Product {
 
 interface ProductsContextData {
   products: Product[];
+  query: string;
   categories: string[];
   isLoading: boolean;
   error: string | null;
+  getRecommendations:()=> Promise<Product[]>;
+  saveQuery:(category: string) => void;
   filterByCategory: (category: string) => void;
-  clearProductFilter: (category: string) => void;
-  // setPriceRange: (range: { min: number; max: number }) => void;
   fetchProducts: () => Promise<Product[]>;
   fetchCategories: () => Promise<string[]>;
   fetchProductsByCategory: (category: string) => Promise<void>;
@@ -37,10 +39,8 @@ function ProductsProvider({ children }:{ children: React.ReactNode }) {
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  // const [priceRange, setPriceRange] = useState<{ min: number; max: number }>({
-  //   min: 0,
-  //   max: Infinity,
-  // });
+
+  const [query, setQuery] = usePersistState('query','');
  
 
   const fetchCategories = async()=> {
@@ -66,12 +66,6 @@ function ProductsProvider({ children }:{ children: React.ReactNode }) {
     fetchCategories();
   }, []);
 
-  function clearProductFilter(category: string) {
-    setPriceRange({ min: 0, max: Infinity });
-    filterByCategory(category);
-    console.log("cleared");
-  }
-
   function filterByCategory(category: string) {
     console.log(category)
     if (category === 'all') {
@@ -85,89 +79,24 @@ function ProductsProvider({ children }:{ children: React.ReactNode }) {
 
   }
 
-  // function applyPriceFilter(min: number, max: number) {
-  //   filterByCategory(category);
+  const getRecommendations = () => {
+    const filtered = products.filter((product:Product) =>
+      product.title.toLowerCase().includes(query.toLowerCase())
+    );
+    return filtered
+  };
 
-  //   const filteredProducts = currentCategory.filter(
-  //     (product) => product.price >= min && product.price <= max
-  //   );
-
-  //   setCurrentCategory(filteredProducts);
-  //   setPriceRange({ min, max });
-  // }
-
-  // function selectPriceRange(range: string) {
-  //   setSelectedPriceRange(range);
-  //   switch (range) {
-  //     case "under100":
-  //       applyPriceFilter(0, 100);
-  //       break;
-  //     case "100to200":
-  //       applyPriceFilter(100, 200);
-  //       break;
-  //     case "201to1000":
-  //       applyPriceFilter(201, 1000);
-  //       break;
-  //     default:
-  //       applyPriceFilter(0, Infinity);
-  //   }
-  // }
-
-  // async function searchProducts(query: string) {
-  //   setIsLoading(true);
-  //   try {
-  //     const searched = products.filter(
-  //       (product) =>
-  //         product.title.toLowerCase().includes(query.toLowerCase()) ||
-  //         product.category.toLowerCase().includes(query.toLowerCase())
-  //     );
-  //     setSearchedProducts(searched);
-
-  //     return searched;
-  //   } catch (error) {
-  //     console.error("Error searching products:", error);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // }
-
-  // function addProductToRecentlyViewed(productId: number) {
-  //   let recentlyViewed =
-  //     JSON.parse(localStorage.getItem("recentlyViewedProducts")) || [];
-
-  //   const existingIndex = recentlyViewed.indexOf(productId);
-  //   if (existingIndex !== -1) {
-  //     recentlyViewed.splice(existingIndex, 1);
-  //   }
-
-  //   recentlyViewed.unshift(productId);
-
-  //   if (recentlyViewed.length > 5) {
-  //     recentlyViewed.pop();
-  //   }
-
-  //   localStorage.setItem(
-  //     "recentlyViewedProducts",
-  //     JSON.stringify(recentlyViewed)
-  //   );
-  //   setRecentlyViewedProducts(recentlyViewed);
-  // }
+  const saveQuery = (keyword:string)=>{
+    setQuery(keyword)
+  }
 
   const fetchProducts = async()=> {
     setIsLoading(true);
     try {
       const response = await fetch("https://fakestoreapi.com/products");
       const data = await response.json();
-      
-      // setProducts((prevProducts) => {
-      //   prevProducts = [];
-      //   prevProducts.push(data);
-      //   return prevProducts;
-      // });
 
       setProducts(data)
-
-      // setCurrentCategory(data);
       console.log(data);
       return data;
 
@@ -188,17 +117,10 @@ function ProductsProvider({ children }:{ children: React.ReactNode }) {
       const data = await response.json();
       console.log(data)
 
-      // setProducts((prevProducts) => {
-      //   prevProducts = [];
-      //   prevProducts.push(data);
-      //   return prevProducts;
-      // });
-
       setProducts(data)
 
       return data;
 
-    
     } catch (error) {
       console.error("Error fetching products by category:", error);
       setError("Could not load products for the selected category");
@@ -225,11 +147,12 @@ function ProductsProvider({ children }:{ children: React.ReactNode }) {
     <ProductsContext.Provider
       value={{
         products,
+        saveQuery,
+        getRecommendations,
         categories,
         isLoading,
         error,
         filterByCategory,
-        clearProductFilter,
         fetchProducts,
         fetchProductsByCategory,
         fetchProductById,

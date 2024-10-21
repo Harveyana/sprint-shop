@@ -22,7 +22,7 @@ const SearchModal = ({open,setOpen}:modalProps) => {
   
   }
 
-  const {products} = useProducts()
+  const {products,saveQuery} = useProducts()
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState<Product[]>(products);
 
@@ -31,6 +31,7 @@ const SearchModal = ({open,setOpen}:modalProps) => {
       product.title.toLowerCase().includes(query.toLowerCase())
     );
     setFilteredProducts(filtered);
+    saveQuery(query)
   }, 100);
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -91,7 +92,13 @@ const SearchModal = ({open,setOpen}:modalProps) => {
                   image={product.image}
                 />
                 ))}
-              </div>: <></>}
+              </div>: 
+              
+              <div className="flex items-center justify-center my-6">
+                <h1 className="font-semibold text-[12px] whitespace-nowrap text-[20px]">No Product Found</h1>
+              </div>
+              
+              }
 
 
             </div>

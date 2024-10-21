@@ -15,10 +15,10 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<DefaultLayout />}>
-          <Route index element={<Home />} />
+          {/* <Route index element={<Home />} /> */}
           <Route path="/product/:id" element={<Product />} />
           <Route path="/category/:category" element={<Category />} />
-          <Route path="/shop" element={<Shop />} />
+          <Route index element={<Shop />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="*" element={<NotFound />} />
         </Route> 

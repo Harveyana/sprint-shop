@@ -102,7 +102,7 @@ const Product = () => {
      
             </div>
 
-            <div className="w-full flex items-center gap-x-3 justify-between">
+            <div className="w-full flex flex-col items-start gap-3 justify-center">
               <div className="w-fit px-4 py-2 bg-[#F8F8F8] rounded-full flex gap-x-3 items-center justify-center">
                 {/* decrease quantity */}
                 <button onClick={()=> handleDecrement()}>

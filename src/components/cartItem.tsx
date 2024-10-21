@@ -1,8 +1,5 @@
 import React,{useState} from "react";
-import { useParams } from "react-router-dom";
-import { useProducts } from "../contexts/ProductsContext";
 import { useCart } from "../contexts/CartContext";
-import { useNavigate } from "react-router-dom";
 
 import useToast from "../hooks/useToast"
 
@@ -12,7 +9,6 @@ interface Product  {
   quantity:number;
   price: number;
   image: string;
-  // category: string;
 }
 
 const CartItem = (product:Product) => {
@@ -21,7 +17,7 @@ const CartItem = (product:Product) => {
   const {handleAddToCart,cart,totalPriceCost,handleDeleteFromCart,increaseQuantity,decreaseQuantity} = useCart()
 
 
-  const navigate = useNavigate();
+
   const {notify} = useToast()
 
   const handleDelete = (id:number)=>{
@@ -44,23 +40,7 @@ const CartItem = (product:Product) => {
     increaseQuantity(product.id)
   };
 
-  
-
-  // const onAddTocart=()=>{
-  //   handleAddToCart({
-  //     id:product?.id,
-  //     name:product?.title,
-  //     image: product?.image,
-  //     quantity: 1,
-  //     price: product?.price,
-  //     category: product?.category
-  //   })
-  //   notify('Added to cart successfully')
-  // }
-
-  // const handleNavigateToProduct = (productId:string) => {
-  //   navigate(`/product/${productId}`);
-  // };
+ 
 
   return (
    
@@ -83,7 +63,7 @@ const CartItem = (product:Product) => {
         <div className="w-full flex items-center gap-x-3 justify-between">
             <div className="w-fit px-4 py-2 bg-[#F8F8F8] rounded-full flex gap-x-3 items-center justify-center">
               {/* decrease quantity */}
-              <button onClick={()=> handleDecrement()}>
+              <button id="decrease" onClick={()=> handleDecrement()}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g opacity="0.5">
                   <rect x="0.5" y="0.5" width="23" height="23" rx="11.5" fill="white"/>
@@ -95,7 +75,7 @@ const CartItem = (product:Product) => {
 
               <p className="text-[#666666] text-[14px] lg:text-[16px]">{quantity}</p>
               {/* increase quantity */}
-              <button onClick={()=> handleIncrement()}>
+              <button id="increase" onClick={()=> handleIncrement()}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect x="0.5" y="0.5" width="23" height="23" rx="11.5" fill="white"/>
                   <rect x="0.5" y="0.5" width="23" height="23" rx="11.5" stroke="#E5E7EB"/>
@@ -113,7 +93,7 @@ const CartItem = (product:Product) => {
 
       <h2 className="absolute right-3 top-[50%] my-auto font-semibold text-[12px] whitespace-nowrap  lg:text-[14px]">₦ {product.price}</h2>
       {/* delete product */}
-      <button onClick={()=>handleDelete(product.id)}  className=" absolute right-3 top-3 rounded-full border border-gray-200 px-1 py-0.3 sm:py-1 hover:bg-gray-400">
+      <button id="delete" onClick={()=>handleDelete(product.id)}  className=" absolute right-3 top-3 rounded-full border border-gray-200 px-1 py-0.3 sm:py-1 hover:bg-gray-400">
        <svg className="w-3 sm:w-10" xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24"><path fill="black" d="M7 21q-.825 0-1.412-.587T5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413T17 21zM17 6H7v13h10zM9 17h2V8H9zm4 0h2V8h-2zM7 6v13z"/></svg>
       </button>
 

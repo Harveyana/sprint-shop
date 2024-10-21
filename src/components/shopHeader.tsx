@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+
 import { NavLink, useNavigate } from "react-router-dom";
-import cart from "../assets/img/cart.svg";
 import SearchProducts from "./SearchProducts";
 import { useCart } from "../contexts/CartContext";
 

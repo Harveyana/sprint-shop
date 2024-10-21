@@ -10,16 +10,6 @@ const SideBar = () => {
 
   const {fetchCategories,categories,isLoading} = useProducts();
 
- 
-  const navigate = useNavigate();
-
-
-
-  const handleGoToRoute = (route:string) => {
-    handleToggleMenu();
-    navigate(route);
-  };
-
   return (
  
       <div className="w-full bg-white h-full z-20 left-0 overflow-y-auto border-r border-gray-300 ">
@@ -30,7 +20,7 @@ const SideBar = () => {
             {/* {productsStore.isInProductPage && ( */}
             <div className="flex flex-col gap-y-4">
 
-              <NavLink to="/shop">
+              <NavLink to="/">
                 <h1 className="text-4xl font-bold mb-4 text-[#27141A]">Sprint Shop</h1>
               </NavLink>
 
