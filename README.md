@@ -8,7 +8,7 @@ Node.js and npm (or yarn) installed on your system.
 #Installation:
 
 Clone Repository:
-"git clone <your-repository-url>"
+"git clone https://github.com/Harveyana/sprint-shop"
 
 Install dependencies:
 "npm install"
