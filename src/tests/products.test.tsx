@@ -35,7 +35,7 @@ describe('Products Component', () => {
     },
   ];
 
-  const mockNoProducts = [];
+  const mockNoProducts:any[] = [];
 
   beforeEach(() => {
     jest.clearAllMocks();

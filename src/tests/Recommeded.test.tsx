@@ -34,7 +34,7 @@ describe('Recommended Component', () => {
     },
   ];
 
-  const mockNoRecommendations = [];
+  const mockNoRecommendations:[] = [];
 
   const mockGetRecommendations = jest.fn();
 
